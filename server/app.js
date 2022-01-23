@@ -3,6 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import session from 'express-session';
 import passport from 'passport';
+import indexRouter from './routes/indexRouter.js';
+import authRouter from './routes/authRouter.js';
 
 const app = express();
 
@@ -30,6 +32,10 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+// routes
+app.use('/', indexRouter);
+app.use('/auth', authRouter);
 
 app.listen(4000, () => {
   console.log('Server is nup and running on 4000');
