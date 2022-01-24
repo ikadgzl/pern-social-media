@@ -5,6 +5,7 @@ import session from 'express-session';
 import passport from 'passport';
 import indexRouter from './routes/indexRouter.js';
 import authRouter from './routes/authRouter.js';
+import './auth.js';
 
 const app = express();
 

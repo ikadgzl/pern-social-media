@@ -4,7 +4,7 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
   img VARCHAR(255) NOT NULL,
-  google_id INT NOT NULL UNIQUE
+  google_id VARCHAR NOT NULL UNIQUE
 );
 
 CREATE TABLE posts (
