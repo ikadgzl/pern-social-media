@@ -3,6 +3,10 @@ import StyledSignup, { StyledSignupButton } from './styled/Signup.styled';
 const Signup = () => {
   const handleSignup = (e) => {
     e.preventDefault();
+
+    const url = `${process.env.REACT_APP_SERVER_URL}/auth/google`;
+
+    window.open(url, '_self');
   };
 
   return (
