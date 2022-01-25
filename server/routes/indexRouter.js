@@ -19,7 +19,13 @@ indexRouter.post('/new_post', isAuth, async (req, res) => {
       req.body.post,
       req.user.id
     ]);
+
+    res
+      .status(200)
+      .json({ msg: 'Post added successfully', post: req.body.post });
   } catch (error) {
+    res.status(500).json({ error });
+
     console.log(error);
   }
 });

@@ -41,5 +41,5 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 
 app.listen(4000, () => {
-  console.log('Sesrver is nup and running on 4000');
+  console.log('Server is nup and running on 4000');
 });
