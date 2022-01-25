@@ -1,12 +1,7 @@
-import Navbar from './Navbar';
 import StyledHome from './styled/Home.styled';
 
 const Home = () => {
-  return (
-    <StyledHome>
-      <Navbar />
-    </StyledHome>
-  );
+  return <StyledHome>HOMEPAGE</StyledHome>;
 };
 
 export default Home;
