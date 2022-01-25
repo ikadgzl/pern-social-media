@@ -1,8 +1,8 @@
-import express from 'express';
+import { Router } from 'express';
 import pool from '../db.js';
 import { isAuth } from '../isAuth.js';
 
-const indexRouter = express.Router();
+const indexRouter = Router();
 
 indexRouter.get('/account', isAuth, (req, res) => {
   const user = {
@@ -10,25 +10,18 @@ indexRouter.get('/account', isAuth, (req, res) => {
     isLogged: true
   };
 
-  res.json({ user });
+  res.status(200).json({ user });
 });
 
 indexRouter.post('/new_post', isAuth, async (req, res) => {
-  console.log(req.body);
-
-  // try {
-  //   await pool.query('INSERT INTO posts (body, author_id) VALUES ($1, $2)', [
-  //     req.body.post,
-  //     req.user.id
-  //   ]);
-
-  //   res
-  //     .status(200)
-  //     .json({ msg: 'Post successfully added', post: req.body.post });
-  // } catch (error) {
-  //   console.log(error);
-  //   res.status(500).json({ error });
-  // }
+  try {
+    await pool.query('INSERT INTO posts (body, author_id) VALUES ($1, $2)', [
+      req.body.post,
+      req.user.id
+    ]);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 export default indexRouter;
