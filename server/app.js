@@ -12,6 +12,8 @@ const app = express();
 // middlewares
 dotenv.config();
 
+app.use(express.json());
+
 app.use(
   cors({
     credentials: true,
