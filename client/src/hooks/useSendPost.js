@@ -1,8 +1,9 @@
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 
-export const useSendPost = () =>
-  useMutation(
-    (post) => (
+export const useSendPost = () => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    (post) =>
       fetch(`${process.env.REACT_APP_SERVER_URL}/new_post`, {
         body: JSON.stringify(post),
         method: 'POST',
@@ -11,8 +12,11 @@ export const useSendPost = () =>
           'Content-Type': 'application/json'
         }
       }),
-      {
-        onSuccess: () => {}
+    {
+      onSuccess: () => {
+        queryClient.refetchQueries('feed');
+        queryClient.refetchQueries('myPosts');
       }
-    )
+    }
   );
+};
