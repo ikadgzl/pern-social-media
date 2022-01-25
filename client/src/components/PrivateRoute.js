@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useStore } from '../context/userContext';
 import Signup from '../components/Signup';
 import Navbar from './Navbar';
@@ -12,7 +12,7 @@ function PrivateRoute() {
       <Outlet />
     </>
   ) : (
-    <Signup />
+    <Navigate to='sign-up' />
   );
 }
 

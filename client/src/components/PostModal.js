@@ -3,21 +3,22 @@ import StyledPostModal, {
   PostModalForm,
   PostModalHeader
 } from './styled/PostModal.styled';
+import { useSendPost } from '../hooks/useSendPost';
 
 const PostModal = ({ toggleModal }) => {
   const [post, setPost] = useState({ body: '' });
   const backgroundRef = useRef(null);
 
+  const { mutate: sendPost } = useSendPost();
+
   const handlePostSubmit = (e) => {
     e.preventDefault();
 
-    const { body } = post;
-
-    if (body.length > 10) {
-      // post to the backend
+    if (post.body.length > 10) {
+      sendPost({ post: post.body });
     }
 
-    setPost({ body });
+    setPost({ body: '' });
     toggleModal();
   };
 
