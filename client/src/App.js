@@ -1,18 +1,22 @@
 import StyledApp from './components/styled/App.styled';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Signup from './components/Signup';
-import { useContext } from 'react';
-import { UserContext } from './context/userContext';
+
+import Home from './components/Home';
+import Feed from './components/Feed';
+import Account from './components/Account';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
-  const user = useContext(UserContext);
-
   return (
     <Router>
       <StyledApp>
         <Routes>
-          <Route path='/' element={user?.isLogged ? 'homepage' : <Signup />} />
+          <Route path='/' element={<PrivateRoute />}>
+            <Route index element={<Home />} />
+            <Route path='/feed' element={<Feed />} />
+            <Route path='/account' element={<Account />} />
+          </Route>
         </Routes>
       </StyledApp>
     </Router>

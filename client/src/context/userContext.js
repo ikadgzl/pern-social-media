@@ -1,9 +1,11 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
-export const UserContext = createContext();
+const UserContext = createContext();
+
+export const useStore = () => useContext(UserContext);
 
 const Context = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
   const [authIsReady, setAuthIsReady] = useState(false);
 
   useEffect(() => {
